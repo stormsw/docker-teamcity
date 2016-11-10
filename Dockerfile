@@ -1,6 +1,9 @@
 FROM alpine
 MAINTAINER Alexander Varchenko <alexander.varchenko@gmail.com>
-RUN apk add --update perl openssl openjdk7-jre-base && rm -rf /var/cache/apk/*
+RUN apk --update upgrade && \
+    apk add curl ca-certificates perl openssl openjdk7-jre-base&& \
+    update-ca-certificates && \
+    rm -rf /var/cache/apk/*
 # TeamCity data is stored in a volume to facilitate container upgrade
 ENV TEAMCITY_DATA_PATH /data/teamcity
 ENV URI_PREFIX cis
